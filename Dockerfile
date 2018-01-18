@@ -15,7 +15,8 @@ RUN cd /tmp \
     && python setup.py install
 
 # copy binary and clean up
-RUN cp -r /tmp/monovar /usr/bin/ \
-    && mv /usr/bin/monovar/external/samtools/samtools /usr/bin/
+RUN mv /tmp/monovar /opt/ \
+    && mv /opt/monovar/external/samtools/samtools /usr/local/bin/ \
+    && ln -s /opt/monovar/src/monovar.py /usr/local/bin/monovar
 
 ENTRYPOINT ["/bin/bash"]
